@@ -14,19 +14,20 @@ using GameStateManagement;
 
 namespace PLD
 {
-    public class JourneyLite : Microsoft.Xna.Framework.Game
+    public class LemmingDeath : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         ScreenManager screenManager;
         SpriteBatch spriteBatch;
 
-        public JourneyLite()
+        public LemmingDeath()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             // 720p window
             graphics.PreferredBackBufferWidth = 854;
             graphics.PreferredBackBufferHeight = 480;
+            Window.Title = "Lemming Death Prototype";
 
             // Create the screen manager component
             screenManager = new ScreenManager(this);
@@ -62,20 +63,6 @@ namespace PLD
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // Preloading assets
-            /*
-                static readonly string[] preloadAssets =
-                {
-                    "gradient",
-                };
-                foreach (string asset in preloadAssets)
-                {
-                    Content.Load<object>(asset);
-                }
-             */
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -120,7 +107,7 @@ namespace PLD
         /// </summary>
         static void Main(string[] args)
         {
-            using (JourneyLite game = new JourneyLite())
+            using (LemmingDeath game = new LemmingDeath())
             {
                 game.Run();
             }

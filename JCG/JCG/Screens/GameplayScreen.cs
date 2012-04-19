@@ -14,6 +14,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PLD;
+using System.Collections.Generic;
 #endregion
 
 namespace GameStateManagement
@@ -24,8 +26,12 @@ namespace GameStateManagement
 
         ContentManager content;
         SpriteFont gameFont;
-        Random random = new Random();
         float pauseAlpha;
+        Texture2D backgroundFarTexture;
+        Texture2D backgroundNearTexture;
+        SpriteBatch spriteBatch;
+        private Camera camera;
+        private List<Layer> layers;
 
         #endregion
 
@@ -47,8 +53,26 @@ namespace GameStateManagement
         {
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
+            
+            spriteBatch = ScreenManager.SpriteBatch;
 
             gameFont = content.Load<SpriteFont>("gamefont");
+            backgroundFarTexture = content.Load<Texture2D>("mountain-parallax");
+            backgroundNearTexture = content.Load<Texture2D>("moon-reflect-parallax");
+
+            // Create a camera instance and limit its moving range
+            camera = new Camera(ScreenManager.GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 3200, 600) };
+
+            // Create 2 layers with parallax ranging from 0% to 100% (only horizontal)
+            layers = new List<Layer>
+            {
+                new Layer(camera) { Parallax = new Vector2(0.0f, 1.0f) },
+                new Layer(camera) { Parallax = new Vector2(0.1f, 1.0f) },
+            };
+
+            // Add one sprite to each layer
+            layers[0].Sprites.Add(new Sprite { Texture = backgroundFarTexture });
+            layers[1].Sprites.Add(new Sprite { Texture = backgroundNearTexture });
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
             // timing mechanism that we have just finished a very long frame, and that
@@ -82,25 +106,30 @@ namespace GameStateManagement
             else
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
 
-            // TODO: not this...
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            SpriteFont font = ScreenManager.Font;
-
-            const string message = "Gameplay!!! Yay...";
-
-            // Center the text in the viewport.
-            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
-            Vector2 textSize = font.MeasureString(message);
-            Vector2 textPosition = (viewportSize - textSize) / 2;
-
-            Color color = Color.White * TransitionAlpha;
-
-            // Draw the text.
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, message, textPosition, color);
-            spriteBatch.End();
+            moveCamera(gameTime);
         }
+
+        /// <summary>
+        /// updates the camera position based on keyboard input
+        /// </summary>
+        private void moveCamera(GameTime gameTime)
+        {
+            float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            KeyboardState keyboardState = Keyboard.GetState();
+
+            if (keyboardState.IsKeyDown(Keys.Right))
+                camera.Move(new Vector2(400.0f * elapsedTime, 0.0f), true);
+
+            if (keyboardState.IsKeyDown(Keys.Left))
+                camera.Move(new Vector2(-400.0f * elapsedTime, 0.0f), true);
+
+            if (keyboardState.IsKeyDown(Keys.Down))
+                camera.Move(new Vector2(0.0f, 400.0f * elapsedTime), true);
+
+            if (keyboardState.IsKeyDown(Keys.Up))
+                camera.Move(new Vector2(0.0f, -400.0f * elapsedTime), true);
+        }
+
 
         /// <summary>
         /// Lets the game respond to player input. Unlike the Update method,
@@ -145,6 +174,27 @@ namespace GameStateManagement
                 float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
+
+            // Center the text in the viewport.
+            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
+            Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
+
+            Color color = Color.White * TransitionAlpha;
+            
+
+            // Draw
+            DrawParallaxBGs();
+            spriteBatch.Begin();
+            spriteBatch.End();
+        }
+
+        /// <summary>
+        /// Draws the parallaxing backgrounds
+        /// </summary>
+        private void DrawParallaxBGs()
+        {
+            foreach (Layer layer in layers)
+                layer.Draw(spriteBatch);
         }
         #endregion
     }

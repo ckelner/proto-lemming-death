@@ -27,7 +27,7 @@ namespace GameStateManagement
         /// Constructor fills in the menu contents.
         /// </summary>
         public MainMenuScreen(string name)
-            : base("Journey to the Center of the Galaxy!")
+            : base("Lemming Death!")
         {
             HumanReadableName = name;
             // Create our menu entries.

@@ -1,4 +1,3 @@
-R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\background.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\blank.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\gamefont.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\menufont.xnb
@@ -9,3 +8,5 @@ R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\PLD.exe
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\PLD.pdb
 R:\Projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.exe
 R:\Projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.pdb
+R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\mountain-parallax.xnb
+R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\moon-reflect-parallax.xnb

@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>background.png</Source>
-      <Name>background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2010-09-15T14:43:52-04:00</Time>
-    </Item>
-    <Item>
       <Source>blank.png</Source>
       <Name>blank</Name>
       <Importer>TextureImporter</Importer>
@@ -45,6 +36,24 @@
       <Options>None</Options>
       <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
       <Time>2012-03-20T20:00:57.03125-04:00</Time>
+    </Item>
+    <Item>
+      <Source>mountain-parallax.png</Source>
+      <Name>mountain-parallax</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\mountain-parallax.xnb</Output>
+      <Time>2009-04-01T23:14:24-04:00</Time>
+    </Item>
+    <Item>
+      <Source>moon-reflect-parallax.png</Source>
+      <Name>moon-reflect-parallax</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\moon-reflect-parallax.xnb</Output>
+      <Time>2012-04-18T20:39:24.359375-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
