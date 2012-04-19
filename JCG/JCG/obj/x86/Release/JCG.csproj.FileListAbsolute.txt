@@ -1,0 +1,11 @@
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\bin\x86\Release\Content\background.xnb
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\bin\x86\Release\Content\blank.xnb
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\bin\x86\Release\Content\gradient.xnb
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\bin\x86\Release\Content\gamefont.xnb
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\bin\x86\Release\Content\menufont.xnb
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\bin\x86\Release\JCG.exe
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\bin\x86\Release\JCG.pdb
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\obj\x86\Release\ResolveAssemblyReference.cache
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\obj\x86\Release\JCG.exe
+C:\projects\Space-Adventure-Game\JCG\JCG\JCG\obj\x86\Release\JCG.pdb

@@ -1,0 +1,3 @@
+C:\Users\TheBearJew\Space-Adventure-Game\JCG\JCG\JCGContent\obj\x86\Debug\ResolveAssemblyReference.cache
+R:\Projects\Space-Adventure-Game\JCG\JCG\JCGContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\projects\Space-Adventure-Game\JCG\JCG\JCGContent\obj\x86\Debug\ResolveAssemblyReference.cache
