@@ -60,9 +60,6 @@ namespace GameStateManagement
         #endregion
 
         #region Initialization
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         public GameplayScreen(String name)
         {
             HumanReadableName = name;
@@ -72,9 +69,6 @@ namespace GameStateManagement
             _cameraPosition = Vector2.Zero;
         }
 
-        /// <summary>
-        /// Load graphics content for the game.
-        /// </summary>
         public override void LoadContent()
         {
             if (content == null)
@@ -189,9 +183,6 @@ namespace GameStateManagement
             #endregion
         }
 
-        /// <summary>
-        /// Unload graphics content used by the game.
-        /// </summary>
         public override void UnloadContent()
         {
             content.Unload();
@@ -269,9 +260,6 @@ namespace GameStateManagement
             base.HandleInput(input);
         }
 
-        /// <summary>
-        /// Draws the gameplay screen.
-        /// </summary>
         public override void Draw(GameTime gameTime)
         {
             // MAKE IT BLACK
