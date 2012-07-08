@@ -7,35 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\blank.xnb</Output>
-      <Time>2010-09-15T14:43:52-04:00</Time>
-    </Item>
-    <Item>
-      <Source>gamefont.spritefont</Source>
-      <Name>gamefont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\gamefont.xnb</Output>
-      <Time>2010-09-15T14:43:52-04:00</Time>
-    </Item>
-    <Item>
-      <Source>menufont.spritefont</Source>
-      <Name>menufont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\menufont.xnb</Output>
-      <Time>2010-09-15T14:43:52-04:00</Time>
-    </Item>
-    <Item>
-      <Source>debug.spritefont</Source>
-      <Name>debug</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
-      <Time>2012-03-20T20:00:57.03125-04:00</Time>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\blank.xnb</Output>
+      <Time>2012-07-07T18:24:08.6004-04:00</Time>
     </Item>
     <Item>
       <Source>mountain-parallax.png</Source>
@@ -43,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\mountain-parallax.xnb</Output>
-      <Time>2009-04-01T23:14:24-04:00</Time>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\mountain-parallax.xnb</Output>
+      <Time>2012-07-07T18:24:08.6044-04:00</Time>
     </Item>
     <Item>
       <Source>moon-reflect-parallax.png</Source>
@@ -52,8 +25,53 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\moon-reflect-parallax.xnb</Output>
-      <Time>2012-04-18T20:39:24.359375-04:00</Time>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\moon-reflect-parallax.xnb</Output>
+      <Time>2012-07-07T18:24:08.6034-04:00</Time>
+    </Item>
+    <Item>
+      <Source>circleSprite.png</Source>
+      <Name>circleSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\circleSprite.xnb</Output>
+      <Time>2012-07-07T20:12:38.7484-04:00</Time>
+    </Item>
+    <Item>
+      <Source>groundSprite.png</Source>
+      <Name>groundSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb</Output>
+      <Time>2012-07-07T20:12:38.7464-04:00</Time>
+    </Item>
+    <Item>
+      <Source>gamefont.spritefont</Source>
+      <Name>gamefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2012-07-07T18:24:08.6024-04:00</Time>
+    </Item>
+    <Item>
+      <Source>menufont.spritefont</Source>
+      <Name>menufont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2012-07-07T18:24:08.6034-04:00</Time>
+    </Item>
+    <Item>
+      <Source>debug.spritefont</Source>
+      <Name>debug</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
+      <Time>2012-07-07T18:24:08.6014-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -61,39 +79,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>true</CompressContent>
-      <RootDirectory>R:\Projects\proto-lemming-death\JCG\JCGContent\</RootDirectory>
-      <LoggerRootDirectory>R:\Projects\proto-lemming-death\JCG\JCG\</LoggerRootDirectory>
-      <IntermediateDirectory>R:\Projects\proto-lemming-death\JCG\JCGContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\projects\proto-lemming-death\JCG\JCGContent\</RootDirectory>
+      <LoggerRootDirectory>C:\projects\proto-lemming-death\JCG\JCG\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\projects\proto-lemming-death\JCG\JCGContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>D:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>D:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
         <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>D:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
         <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>D:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
         <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>D:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
         <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>D:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>D:\WINDOWS.0\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-02-10T16:32:10.265625-05:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-03-06T17:50:10.3027582-05:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

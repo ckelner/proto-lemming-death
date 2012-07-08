@@ -16,6 +16,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PLD;
 using System.Collections.Generic;
+
+//farseer shit
+using FarseerPhysics.Common;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
+using FarseerPhysics.Collision.Shapes;
+
 #endregion
 
 namespace GameStateManagement
@@ -27,11 +34,18 @@ namespace GameStateManagement
         ContentManager content;
         SpriteFont gameFont;
         float pauseAlpha;
-        Texture2D backgroundFarTexture;
-        Texture2D backgroundNearTexture;
         SpriteBatch spriteBatch;
-        private Camera camera;
-        private List<Layer> layers;
+        private Texture2D _circleSprite;
+        private Texture2D _groundSprite;
+        private const float MeterInPixels = 64f;
+        private Body _circleBody;
+        private Body _groundBody;
+        private World _world;
+        private KeyboardState _oldKeyState;
+        // Simple camera controls
+        private Matrix _view;
+        private Vector2 _cameraPosition;
+        private Vector2 _screenCenter;
 
         #endregion
 
@@ -44,6 +58,8 @@ namespace GameStateManagement
             HumanReadableName = name;
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            _world = new World(new Vector2(0, 20));
+            _cameraPosition = Vector2.Zero;
         }
 
         /// <summary>
@@ -55,24 +71,51 @@ namespace GameStateManagement
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
             
             spriteBatch = ScreenManager.SpriteBatch;
-
             gameFont = content.Load<SpriteFont>("gamefont");
-            backgroundFarTexture = content.Load<Texture2D>("mountain-parallax");
-            backgroundNearTexture = content.Load<Texture2D>("moon-reflect-parallax");
 
-            // Create a camera instance and limit its moving range
-            camera = new Camera(ScreenManager.GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 3200, 600) };
+            // Initialize camera controls - Kelner - Needs improvement
+            /** TODO: Camera follow Hero? **/
+            _view = Matrix.Identity;
+            _cameraPosition = Vector2.Zero;
 
-            // Create 2 layers with parallax ranging from 0% to 100% (only horizontal)
-            layers = new List<Layer>
-            {
-                new Layer(camera) { Parallax = new Vector2(0.0f, 1.0f) },
-                new Layer(camera) { Parallax = new Vector2(0.1f, 1.0f) },
-            };
+            // Convert screen center from pixels to meters
+            _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
+                                                ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
-            // Add one sprite to each layer
-            layers[0].Sprites.Add(new Sprite { Texture = backgroundFarTexture });
-            layers[1].Sprites.Add(new Sprite { Texture = backgroundNearTexture });
+            // Load sprites
+            _circleSprite = content.Load<Texture2D>("circleSprite"); //  96px x 96px => 1.5m x 1.5m
+            _groundSprite = content.Load<Texture2D>("groundSprite"); // 512px x 64px =>   8m x 1m
+
+            Vector2 circlePosition = (_screenCenter / MeterInPixels) + new Vector2(0, -1.5f);
+
+            // Create the circle fixture
+            // Kelner - This is World (duh), Body Radius (because we are declaring a circle), 
+            // Body Density (for PHYSICS!), and starting position) 
+            _circleBody = BodyFactory.CreateCircle(_world, 96f / (2f * MeterInPixels), 1f, circlePosition);
+            // Kelner - Dynamic Bodytype is Positive Mass, non-zero velocity determined by forces, moved by solver
+            // This is something that can move versus something that can not be moved
+            _circleBody.BodyType = BodyType.Dynamic;
+
+            // Give it some bounce and friction
+            _circleBody.Restitution = 0.3f;
+            _circleBody.Friction = 0.5f;
+
+            // Kelner - define the ground position for physics interaction
+            // the texture itself is drawn later
+            /** TODO - Kelner - I think this could be done better, I don't like the idea of keeping
+             * the physics object seperate from the texture, otherwise you end up with problems like
+             * the player falling through the world
+             **/
+            Vector2 groundPosition = (_screenCenter / MeterInPixels) + new Vector2(0, 1.25f);
+
+            // Create the ground fixture
+            // Kelner - World, width, height, density, and position
+            _groundBody = BodyFactory.CreateRectangle(_world, 512f / MeterInPixels, 64f / MeterInPixels, 1f, groundPosition);
+            // unmoving
+            _groundBody.IsStatic = true;
+            // bounce and friction
+            _groundBody.Restitution = 0.3f;
+            _groundBody.Friction = 0.5f;
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
             // timing mechanism that we have just finished a very long frame, and that
@@ -100,13 +143,14 @@ namespace GameStateManagement
         {
             base.Update(gameTime, otherScreenHasFocus, false);
 
+            // update the world - this is the physics engine
+            _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
                 pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
             else
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
-
-            moveCamera(gameTime);
         }
 
         /// <summary>
@@ -114,22 +158,8 @@ namespace GameStateManagement
         /// </summary>
         private void moveCamera(GameTime gameTime)
         {
-            float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            KeyboardState keyboardState = Keyboard.GetState();
-
-            if (keyboardState.IsKeyDown(Keys.Right))
-                camera.Move(new Vector2(400.0f * elapsedTime, 0.0f), true);
-
-            if (keyboardState.IsKeyDown(Keys.Left))
-                camera.Move(new Vector2(-400.0f * elapsedTime, 0.0f), true);
-
-            if (keyboardState.IsKeyDown(Keys.Down))
-                camera.Move(new Vector2(0.0f, 400.0f * elapsedTime), true);
-
-            if (keyboardState.IsKeyDown(Keys.Up))
-                camera.Move(new Vector2(0.0f, -400.0f * elapsedTime), true);
+            // Kelner - unused right now
         }
-
 
         /// <summary>
         /// Lets the game respond to player input. Unlike the Update method,
@@ -143,6 +173,8 @@ namespace GameStateManagement
             // Look up inputs for the active player profile.
             int playerIndex = (int)ControllingPlayer.Value;
 
+            // get the keyboard state
+            /** TODO - Kelner - Do gamepad shits **/
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
@@ -157,6 +189,24 @@ namespace GameStateManagement
             {
                 ScreenManager.AddScreen(new PauseMenuScreen("pause"), ControllingPlayer);
             }
+
+            // We make it possible to rotate the circle body (ROLLING YO!)
+            if (keyboardState.IsKeyDown(Keys.A))
+            {
+                _circleBody.ApplyTorque(-10);
+            }
+            if (keyboardState.IsKeyDown(Keys.D))
+            {
+                _circleBody.ApplyTorque(10);
+            }
+
+            // Kelner - This allows us to double jump!
+            if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
+                _circleBody.ApplyLinearImpulse(new Vector2(0, -10));
+
+            // Kelner - store to know old state
+            _oldKeyState = keyboardState;
+
             base.HandleInput(input);
         }
 
@@ -165,6 +215,7 @@ namespace GameStateManagement
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
+            // MAKE IT BLACK
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                Color.Black, 0, 0);
 
@@ -175,27 +226,27 @@ namespace GameStateManagement
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
 
-            // Center the text in the viewport.
-            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
+            /* Circle position and rotation */
+            // Convert physics position (meters) to screen coordinates (pixels)
+            Vector2 circlePos = _circleBody.Position * MeterInPixels;
+            // gets the circle angle
+            float circleRotation = _circleBody.Rotation;
 
-            Color color = Color.White * TransitionAlpha;
-            
+            /* Ground position and origin */
+            Vector2 groundPos = _groundBody.Position * MeterInPixels;
+            Vector2 groundOrigin = new Vector2(_groundSprite.Width / 2f, _groundSprite.Height / 2f);
 
-            // Draw
-            DrawParallaxBGs();
-            spriteBatch.Begin();
+            // Align sprite center to body position
+            Vector2 circleOrigin = new Vector2(_circleSprite.Width / 2f, _circleSprite.Height / 2f);
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
+            //Draw circle
+            spriteBatch.Draw(_circleSprite, circlePos, null, Color.White, circleRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
+            //Draw ground
+            spriteBatch.Draw(_groundSprite, groundPos, null, Color.White, 0f, groundOrigin, 1f, SpriteEffects.None, 0f);
             spriteBatch.End();
         }
-
-        /// <summary>
-        /// Draws the parallaxing backgrounds
-        /// </summary>
-        private void DrawParallaxBGs()
-        {
-            foreach (Layer layer in layers)
-                layer.Draw(spriteBatch);
-        }
+        
         #endregion
     }
 }
