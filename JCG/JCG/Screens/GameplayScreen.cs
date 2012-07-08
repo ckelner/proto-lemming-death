@@ -35,11 +35,21 @@ namespace GameStateManagement
         SpriteFont gameFont;
         float pauseAlpha;
         SpriteBatch spriteBatch;
-        private Texture2D _circleSprite;
+        // the hero objects
+        private Texture2D _heroSprite;
+        private Body _heroBody;
+        // the level objects
         private Texture2D _groundSprite;
-        private const float MeterInPixels = 64f;
-        private Body _circleBody;
         private Body _groundBody;
+        private Texture2D _smallStoneTexture;
+        private Body _smallStone;
+        private int smallStoneWidth = 10;
+        private int smallStoneHeight = 5;
+        private Texture2D _smallStoneGroundTexture;
+        private Body _smallStoneGround;
+        private int smallStoneGroundWidth = 10;
+        private int smallStoneGroundHeight = 5;
+        private const float MeterInPixels = 64f;
         private World _world;
         private KeyboardState _oldKeyState;
         // Simple camera controls
@@ -68,7 +78,9 @@ namespace GameStateManagement
         public override void LoadContent()
         {
             if (content == null)
+            {
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
+            }
             
             spriteBatch = ScreenManager.SpriteBatch;
             gameFont = content.Load<SpriteFont>("gamefont");
@@ -79,10 +91,9 @@ namespace GameStateManagement
             _cameraPosition = Vector2.Zero;
 
             // Convert screen center from pixels to meters
-            _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
-                                                ScreenManager.GraphicsDevice.Viewport.Height / 2f);
+            _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
-            createBody();
+            createHero();
             createLevel();
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
@@ -91,42 +102,91 @@ namespace GameStateManagement
             ScreenManager.Game.ResetElapsedTime();
         }
 
-        private void createBody()
+        // creates the hero body
+        private void createHero()
         {
             // Load Sprite
-            _circleSprite = content.Load<Texture2D>("circleSprite"); //  96px x 96px => 1.5m x 1.5m
+            //_heroSprite = content.Load<Texture2D>("circleSprite"); //  96px x 96px => 1.5m x 1.5m
+            _heroSprite = content.Load<Texture2D>("rectangleSprite"); //  33px x 63px => 0.52m x 1m
 
-            Vector2 circlePosition = (_screenCenter / MeterInPixels) + new Vector2(0, -1.5f);
+            // Vector2 heroPosition = (_screenCenter / MeterInPixels) + new Vector2(0, -1.5f);
+            Vector2 heroPosition = (_screenCenter / MeterInPixels);
 
             // Create the circle fixture
-            // Kelner - This is World (duh), Body Radius (because we are declaring a circle), Body Density (for PHYSICS!), and starting position)
-            _circleBody = BodyFactory.CreateCircle(_world, 96f / (2f * MeterInPixels), 1f, circlePosition);
+            // Kelner - This is World, Body Radius, Body Density (for PHYSICS!), and starting position)
+            // _heroBody = BodyFactory.CreateCircle(_world, 96f / (2f * MeterInPixels), 1f, heroPosition);
+            _heroBody = BodyFactory.CreateRectangle(_world, 33f / MeterInPixels, 63f / MeterInPixels, 1f, heroPosition);
 
             // Kelner - Dynamic Bodytype is Positive Mass, non-zero velocity determined by forces, moved by solver
             // This is something that can move versus something that can not be moved
-            _circleBody.BodyType = BodyType.Dynamic;
+            _heroBody.BodyType = BodyType.Dynamic;
 
             // Give it some bounce and friction
-            _circleBody.Restitution = 0.3f;
-            _circleBody.Friction = 0.5f;
+            _heroBody.Restitution = 0.3f;
+            _heroBody.Friction = 0.5f;
+
+            // Kelner - dampening when in the air
+            _heroBody.LinearDamping = 0.0f;
+            _heroBody.AngularDamping = 0.01f;
         }
 
+        // creates the level
         private void createLevel()
         {
+            #region ground
             // load ground sprite
-            _groundSprite = content.Load<Texture2D>("groundSprite"); // 512px x 64px =>   8m x 1m
+            _groundSprite = content.Load<Texture2D>("groundSprite"); // 505px x 58px =>   7.89m x 0.91m
 
             // Kelner - define the ground position for physics interaction
             Vector2 groundPosition = (_screenCenter / MeterInPixels) + new Vector2(0, 1.25f);
 
             // Create the ground fixture
             // Kelner - World, width, height, density, and position
-            _groundBody = BodyFactory.CreateRectangle(_world, 512f / MeterInPixels, 64f / MeterInPixels, 1f, groundPosition);
+            _groundBody = BodyFactory.CreateRectangle(_world, 505f / MeterInPixels, 58f / MeterInPixels, 1f, groundPosition);
             // unmoving
             _groundBody.IsStatic = true;
             // bounce and friction
             _groundBody.Restitution = 0.3f;
             _groundBody.Friction = 0.5f;
+            #endregion ground
+
+            #region stoneMidAir
+            Vector2 smallStonePos = (_screenCenter / MeterInPixels) + new Vector2(.89f, 0);
+            _smallStone = BodyFactory.CreateRectangle(_world, smallStoneWidth / MeterInPixels, smallStoneHeight / MeterInPixels, 1f, smallStonePos);
+            _smallStone.IsStatic = true;
+            // bounce and friction
+            _smallStone.Restitution = 0.3f;
+            _smallStone.Friction = 0.5f;
+
+            _smallStoneTexture = new Texture2D(ScreenManager.GraphicsDevice, smallStoneWidth, smallStoneHeight);
+            Color[] stoneMidAircolor = new Color[smallStoneWidth * smallStoneHeight];
+            //loop through all the colors setting them to whatever values we want
+            for (int i = 0; i < stoneMidAircolor.Length; i++)
+            {
+                stoneMidAircolor[i] = new Color(255, 255, 255, 255);
+            }
+            //set the color data on the texture
+            _smallStoneTexture.SetData(stoneMidAircolor);
+            #endregion
+
+            #region stoneGround
+            Vector2 smallStoneGroundPos = (_screenCenter / MeterInPixels) + new Vector2(-2.5f, 0.75f);
+            _smallStoneGround = BodyFactory.CreateRectangle(_world, smallStoneGroundWidth / MeterInPixels, smallStoneGroundHeight / MeterInPixels, 1f, smallStoneGroundPos);
+            _smallStone.IsStatic = true;
+            // bounce and friction
+            _smallStoneGround.Restitution = 0.3f;
+            _smallStoneGround.Friction = 0.5f;
+
+            _smallStoneGroundTexture = new Texture2D(ScreenManager.GraphicsDevice, smallStoneGroundWidth, smallStoneGroundHeight);
+            Color[] stoneGroundcolor = new Color[smallStoneGroundWidth * smallStoneGroundHeight];
+            //loop through all the colors setting them to whatever values we want
+            for (int i = 0; i < stoneGroundcolor.Length; i++)
+            {
+                stoneGroundcolor[i] = new Color(255, 255, 255, 255);
+            }
+            //set the color data on the texture
+            _smallStoneGroundTexture.SetData(stoneGroundcolor);
+            #endregion
         }
 
         /// <summary>
@@ -190,16 +250,18 @@ namespace GameStateManagement
             // We make it possible to rotate the circle body (ROLLING YO!)
             if (keyboardState.IsKeyDown(Keys.A))
             {
-                _circleBody.ApplyTorque(-10);
+                //_heroBody.ApplyTorque(-10);
+                _heroBody.ApplyForce(new Vector2(-10));
             }
             if (keyboardState.IsKeyDown(Keys.D))
             {
-                _circleBody.ApplyTorque(10);
+                //_heroBody.ApplyTorque(10);
+                _heroBody.ApplyForce(new Vector2(10, 0));
             }
 
             // Kelner - This allows us to double jump!
             if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
-                _circleBody.ApplyLinearImpulse(new Vector2(0, -10));
+                _heroBody.ApplyLinearImpulse(new Vector2(0, -2));
 
             // Kelner - store to know old state
             _oldKeyState = keyboardState;
@@ -225,23 +287,47 @@ namespace GameStateManagement
 
             /* Circle position and rotation */
             // Convert physics position (meters) to screen coordinates (pixels)
-            Vector2 circlePos = _circleBody.Position * MeterInPixels;
-            // gets the circle angle
-            float circleRotation = _circleBody.Rotation;
+            Vector2 heroPos = _heroBody.Position * MeterInPixels;
+            // gets the hero angle
+            float heroRotation = _heroBody.Rotation;
+            
+            // Align sprite center to body position
+            Vector2 circleOrigin = new Vector2(_heroSprite.Width / 2f, _heroSprite.Height / 2f);
 
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
+            //Draw hero
+            spriteBatch.Draw(_heroSprite, heroPos, null, Color.White, heroRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
+            //Draw level
+            drawLevel();
+            spriteBatch.End();
+        }
+
+        private void drawLevel()
+        {
             /* Ground position and origin */
             Vector2 groundPos = _groundBody.Position * MeterInPixels;
             Vector2 groundOrigin = new Vector2(_groundSprite.Width / 2f, _groundSprite.Height / 2f);
 
-            // Align sprite center to body position
-            Vector2 circleOrigin = new Vector2(_circleSprite.Width / 2f, _circleSprite.Height / 2f);
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
-            //Draw circle
-            spriteBatch.Draw(_circleSprite, circlePos, null, Color.White, circleRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
-            //Draw ground
+            //Draw Ground
             spriteBatch.Draw(_groundSprite, groundPos, null, Color.White, 0f, groundOrigin, 1f, SpriteEffects.None, 0f);
-            spriteBatch.End();
+
+            //Draw Stone Mid Air
+            // Kelner - For some reason you need to subtract from the value you are drawing
+            // to get accurate with the physics object.  I am unsure if this scales well with larger objects
+            // or not...  What I do know is that there is probably a better way to do this, maybe by 
+            // refining the 'MeterInPixels' value or changing the physics object instead of the 
+            // object that gets drawn.  Further investigation should be done...
+            Vector2 smallStonePos = _smallStone.Position * (MeterInPixels - 0.70f);
+            spriteBatch.Draw(_smallStoneTexture, smallStonePos, null, Color.White, 0f, new Vector2(0,0), 1f, SpriteEffects.None, 0f);
+
+            //Draw Stone Ground
+            // Kelner - For some reason you need to subtract from the value you are drawing
+            // to get accurate with the physics object.  I am unsure if this scales well with larger objects
+            // or not...  What I do know is that there is probably a better way to do this, maybe by 
+            // refining the 'MeterInPixels' value or changing the physics object instead of the 
+            // object that gets drawn.  Further investigation should be done...
+            Vector2 smallStoneGroundPos = _smallStoneGround.Position * (MeterInPixels - 0.70f);
+            spriteBatch.Draw(_smallStoneGroundTexture, smallStoneGroundPos, null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
         }
         
         #endregion

@@ -11,24 +11,6 @@
       <Time>2012-07-07T18:24:08.6004-04:00</Time>
     </Item>
     <Item>
-      <Source>mountain-parallax.png</Source>
-      <Name>mountain-parallax</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\mountain-parallax.xnb</Output>
-      <Time>2012-07-07T18:24:08.6044-04:00</Time>
-    </Item>
-    <Item>
-      <Source>moon-reflect-parallax.png</Source>
-      <Name>moon-reflect-parallax</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\moon-reflect-parallax.xnb</Output>
-      <Time>2012-07-07T18:24:08.6034-04:00</Time>
-    </Item>
-    <Item>
       <Source>circleSprite.png</Source>
       <Name>circleSprite</Name>
       <Importer>TextureImporter</Importer>
@@ -44,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb</Output>
-      <Time>2012-07-07T20:12:38.7464-04:00</Time>
+      <Time>2012-07-08T00:20:50.0368-04:00</Time>
     </Item>
     <Item>
       <Source>gamefont.spritefont</Source>
@@ -72,6 +54,15 @@
       <Options>None</Options>
       <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
       <Time>2012-07-07T18:24:08.6014-04:00</Time>
+    </Item>
+    <Item>
+      <Source>rectangleSprite.png</Source>
+      <Name>rectangleSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb</Output>
+      <Time>2012-07-08T00:17:33.7958-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

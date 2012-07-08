@@ -11,8 +11,6 @@ R:\Projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.pdb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\mountain-parallax.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\moon-reflect-parallax.xnb
 C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\blank.xnb
-C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\mountain-parallax.xnb
-C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\moon-reflect-parallax.xnb
 C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\circleSprite.xnb
 C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb
 C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\gamefont.xnb
@@ -25,3 +23,4 @@ C:\projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\ResolveAssemblyReference.c
 C:\projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.exe
 C:\projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.pdb
+C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb

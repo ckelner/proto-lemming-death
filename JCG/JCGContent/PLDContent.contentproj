@@ -68,20 +68,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mountain-parallax.png">
-      <Name>mountain-parallax</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="moon-reflect-parallax.png">
-      <Name>moon-reflect-parallax</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="circleSprite.png">
       <Name>circleSprite</Name>
       <Importer>TextureImporter</Importer>
@@ -89,6 +75,13 @@
     </Compile>
     <Compile Include="groundSprite.png">
       <Name>groundSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="rectangleSprite.png">
+      <Name>rectangleSprite</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
