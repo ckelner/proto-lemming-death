@@ -82,16 +82,26 @@ namespace GameStateManagement
             _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
                                                 ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
-            // Load sprites
+            createBody();
+            createLevel();
+
+            // once the load has finished, we use ResetElapsedTime to tell the game's
+            // timing mechanism that we have just finished a very long frame, and that
+            // it should not try to catch up.
+            ScreenManager.Game.ResetElapsedTime();
+        }
+
+        private void createBody()
+        {
+            // Load Sprite
             _circleSprite = content.Load<Texture2D>("circleSprite"); //  96px x 96px => 1.5m x 1.5m
-            _groundSprite = content.Load<Texture2D>("groundSprite"); // 512px x 64px =>   8m x 1m
 
             Vector2 circlePosition = (_screenCenter / MeterInPixels) + new Vector2(0, -1.5f);
 
             // Create the circle fixture
-            // Kelner - This is World (duh), Body Radius (because we are declaring a circle), 
-            // Body Density (for PHYSICS!), and starting position) 
+            // Kelner - This is World (duh), Body Radius (because we are declaring a circle), Body Density (for PHYSICS!), and starting position)
             _circleBody = BodyFactory.CreateCircle(_world, 96f / (2f * MeterInPixels), 1f, circlePosition);
+
             // Kelner - Dynamic Bodytype is Positive Mass, non-zero velocity determined by forces, moved by solver
             // This is something that can move versus something that can not be moved
             _circleBody.BodyType = BodyType.Dynamic;
@@ -99,13 +109,14 @@ namespace GameStateManagement
             // Give it some bounce and friction
             _circleBody.Restitution = 0.3f;
             _circleBody.Friction = 0.5f;
+        }
+
+        private void createLevel()
+        {
+            // load ground sprite
+            _groundSprite = content.Load<Texture2D>("groundSprite"); // 512px x 64px =>   8m x 1m
 
             // Kelner - define the ground position for physics interaction
-            // the texture itself is drawn later
-            /** TODO - Kelner - I think this could be done better, I don't like the idea of keeping
-             * the physics object seperate from the texture, otherwise you end up with problems like
-             * the player falling through the world
-             **/
             Vector2 groundPosition = (_screenCenter / MeterInPixels) + new Vector2(0, 1.25f);
 
             // Create the ground fixture
@@ -116,11 +127,6 @@ namespace GameStateManagement
             // bounce and friction
             _groundBody.Restitution = 0.3f;
             _groundBody.Friction = 0.5f;
-
-            // once the load has finished, we use ResetElapsedTime to tell the game's
-            // timing mechanism that we have just finished a very long frame, and that
-            // it should not try to catch up.
-            ScreenManager.Game.ResetElapsedTime();
         }
 
         /// <summary>
@@ -138,8 +144,7 @@ namespace GameStateManagement
         /// property, so the game will stop updating when the pause menu is active,
         /// or if you tab away to a different application.
         /// </summary>
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                                       bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
 
@@ -151,14 +156,6 @@ namespace GameStateManagement
                 pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
             else
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
-        }
-
-        /// <summary>
-        /// updates the camera position based on keyboard input
-        /// </summary>
-        private void moveCamera(GameTime gameTime)
-        {
-            // Kelner - unused right now
         }
 
         /// <summary>
