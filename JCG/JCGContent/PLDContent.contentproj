@@ -68,11 +68,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="circleSprite.png">
-      <Name>circleSprite</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="groundSprite.png">
       <Name>groundSprite</Name>
       <Importer>TextureImporter</Importer>

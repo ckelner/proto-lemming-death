@@ -22,6 +22,7 @@ using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Collision.Shapes;
+using PLD.Hero;
 
 #endregion
 
@@ -35,10 +36,7 @@ namespace GameStateManagement
         SpriteFont gameFont;
         float pauseAlpha;
         SpriteBatch spriteBatch;
-        // the hero objects
-        private Texture2D _heroSprite;
-        private Body _heroBody;
-        // the level objects
+        // the world objects
         private Texture2D _groundSprite;
         private Body _groundBody;
         private Texture2D _smallStoneTexture;
@@ -56,6 +54,8 @@ namespace GameStateManagement
         private Matrix _view;
         private Vector2 _cameraPosition;
         private Vector2 _screenCenter;
+        // The Hero
+        Hero theHero = new Hero();
 
         #endregion
 
@@ -87,41 +87,16 @@ namespace GameStateManagement
             // Convert screen center from pixels to meters
             _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
-            createHero();
+            // init hero
+            theHero.createHero(_screenCenter, MeterInPixels, _world, content, 33f, 63f, 1f, BodyType.Dynamic, 0.3f, 0.5f, 0.0f, 0.01f);
+
+            // init level
             createLevel();
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
             // timing mechanism that we have just finished a very long frame, and that
             // it should not try to catch up.
             ScreenManager.Game.ResetElapsedTime();
-        }
-
-        // creates the hero body
-        private void createHero()
-        {
-            // Load Sprite
-            //_heroSprite = content.Load<Texture2D>("circleSprite"); //  96px x 96px => 1.5m x 1.5m
-            _heroSprite = content.Load<Texture2D>("rectangleSprite"); //  33px x 63px => 0.52m x 1m
-
-            // Vector2 heroPosition = (_screenCenter / MeterInPixels) + new Vector2(0, -1.5f);
-            Vector2 heroPosition = (_screenCenter / MeterInPixels);
-
-            // Create the circle fixture
-            // Kelner - This is World, Body Radius, Body Density (for PHYSICS!), and starting position)
-            // _heroBody = BodyFactory.CreateCircle(_world, 96f / (2f * MeterInPixels), 1f, heroPosition);
-            _heroBody = BodyFactory.CreateRectangle(_world, 33f / MeterInPixels, 63f / MeterInPixels, 1f, heroPosition);
-
-            // Kelner - Dynamic Bodytype is Positive Mass, non-zero velocity determined by forces, moved by solver
-            // This is something that can move versus something that can not be moved
-            _heroBody.BodyType = BodyType.Dynamic;
-
-            // Give it some bounce and friction
-            _heroBody.Restitution = 0.3f;
-            _heroBody.Friction = 0.5f;
-
-            // Kelner - dampening when in the air
-            _heroBody.LinearDamping = 0.0f;
-            _heroBody.AngularDamping = 0.01f;
         }
 
         // creates the level
@@ -238,21 +213,8 @@ namespace GameStateManagement
                 ScreenManager.AddScreen(new PauseMenuScreen("pause"), ControllingPlayer);
             }
 
-            // We make it possible to rotate the circle body (ROLLING YO!)
-            if (keyboardState.IsKeyDown(Keys.A))
-            {
-                //_heroBody.ApplyTorque(-10);
-                _heroBody.ApplyForce(new Vector2(-10));
-            }
-            if (keyboardState.IsKeyDown(Keys.D))
-            {
-                //_heroBody.ApplyTorque(10);
-                _heroBody.ApplyForce(new Vector2(10, 0));
-            }
-
-            // Kelner - This allows us to double jump!
-            if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
-                _heroBody.ApplyLinearImpulse(new Vector2(0, -2));
+            // let the hero noodle on the input as well
+            theHero.handleInput(keyboardState, _oldKeyState);
 
             // Kelner - store to know old state
             _oldKeyState = keyboardState;
@@ -273,20 +235,14 @@ namespace GameStateManagement
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
 
-            /* Circle position and rotation */
-            // Convert physics position (meters) to screen coordinates (pixels)
-            Vector2 heroPos = _heroBody.Position * MeterInPixels;
-            // gets the hero angle
-            float heroRotation = _heroBody.Rotation;
-            
-            // Align sprite center to body position
-            Vector2 circleOrigin = new Vector2(_heroSprite.Width / 2f, _heroSprite.Height / 2f);
-
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
-            //Draw hero
-            spriteBatch.Draw(_heroSprite, heroPos, null, Color.White, heroRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
-            //Draw level
+            
+            // Draw level
             drawLevel();
+
+            // Draw Hero
+            theHero.draw(MeterInPixels, spriteBatch);
+
             spriteBatch.End();
         }
 

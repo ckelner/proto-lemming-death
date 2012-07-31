@@ -22,7 +22,6 @@ C:\projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\Microsoft.Xna.Framework.Ru
 C:\projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.exe
 C:\projects\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.pdb
 C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb
-R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\circleSprite.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\FarseerPhysicsXNA.dll

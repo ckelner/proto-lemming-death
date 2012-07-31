@@ -11,15 +11,6 @@
       <Time>2012-07-08T10:59:57.453125-04:00</Time>
     </Item>
     <Item>
-      <Source>circleSprite.png</Source>
-      <Name>circleSprite</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\circleSprite.xnb</Output>
-      <Time>2012-07-08T10:59:57.453125-04:00</Time>
-    </Item>
-    <Item>
       <Source>groundSprite.png</Source>
       <Name>groundSprite</Name>
       <Importer>TextureImporter</Importer>
