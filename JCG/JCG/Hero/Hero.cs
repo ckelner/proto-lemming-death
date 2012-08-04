@@ -14,7 +14,6 @@ namespace PLD.Hero
         // the hero objects
         private Texture2D _heroSprite;
         private Body _heroBody;
-        private float oldHeroRotate;
 
         #endregion
 
@@ -63,6 +62,8 @@ namespace PLD.Hero
             // Kelner - dampening when in the air
             _heroBody.LinearDamping = lineardamping;
             _heroBody.AngularDamping = angulardamping;
+
+            _heroBody.FixedRotation = true;
         }
 
         /// <summary>
@@ -88,33 +89,6 @@ namespace PLD.Hero
             // TODO: Limit to a single double jump
             if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
                 _heroBody.ApplyLinearImpulse(new Vector2(0, -2));
-
-            // Prevent the hero from roatating
-            preventRotation();
-        }
-
-        /// <summary>
-        /// Prevents the hero from toppling over!
-        /// </summary>
-        private void preventRotation()
-        {
-            // get current rotation
-            float heroRotation = _heroBody.Rotation;
-            // if we aren't in the same position as the hero was last cycle
-            // then let's do something about it
-            if (heroRotation != oldHeroRotate)
-            {
-                // we determine if we've ever been here before
-                // if we haven't been here than let's initialize this thing!
-                if (oldHeroRotate != 0.0f) // take it in and reset the hero
-                {
-                    _heroBody.Rotation = oldHeroRotate;
-                }
-                else // intitialize and assign!
-                {
-                    oldHeroRotate = heroRotation;
-                }
-            }
         }
 
         /// <summary>
