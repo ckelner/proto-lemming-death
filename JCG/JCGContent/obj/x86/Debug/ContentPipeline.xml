@@ -55,6 +55,15 @@
       <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
       <Time>2012-07-07T18:24:08.6014-04:00</Time>
     </Item>
+    <Item>
+      <Source>stoneSprite.png</Source>
+      <Name>stoneSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb</Output>
+      <Time>2012-08-04T15:48:02.5571793-04:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

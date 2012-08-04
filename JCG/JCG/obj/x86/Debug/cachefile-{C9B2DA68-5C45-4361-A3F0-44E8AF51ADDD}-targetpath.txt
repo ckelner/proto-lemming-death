@@ -4,3 +4,4 @@ Content\rectangleSprite.xnb
 Content\gamefont.xnb
 Content\menufont.xnb
 Content\debug.xnb
+Content\stoneSprite.xnb
