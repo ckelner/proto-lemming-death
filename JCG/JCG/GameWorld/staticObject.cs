@@ -9,6 +9,9 @@ using FarseerPhysics.Factories;
 
 namespace PLD.GameWorld
 {
+    /// <summary>
+    /// static objects in the gameworld
+    /// </summary>
     class staticObject
     {
         #region vars

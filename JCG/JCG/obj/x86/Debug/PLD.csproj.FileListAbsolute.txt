@@ -25,3 +25,4 @@ R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\FarseerPhysicsXNA.dll
 C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb
+R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb

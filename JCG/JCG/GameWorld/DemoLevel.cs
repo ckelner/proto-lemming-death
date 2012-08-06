@@ -20,7 +20,16 @@ namespace PLD.GameWorld
         private gameWorld gWorld;
 
         #endregion
-                       
+        
+        /// <summary>
+        /// Intializes the Demo Level
+        /// Takes in gameWorld which is an instance of "gameWorld"
+        /// content is the content manager from gameplayscreen
+        /// screencenter is the center of the screen
+        /// </summary>
+        /// <param name="gameWorld"></param>
+        /// <param name="content"></param>
+        /// <param name="_screenCenter"></param>
         public DemoLevel(gameWorld gameWorld, ContentManager content, Vector2 _screenCenter)
         {
             // get the world
@@ -68,6 +77,10 @@ namespace PLD.GameWorld
             #endregion
         }
 
+        /// <summary>
+        /// Draws the DemoLevel
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
             /* Ground position and origin */
