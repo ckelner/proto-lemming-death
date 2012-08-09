@@ -102,6 +102,8 @@ namespace GameStateManagement
             string r = string.Format("RAM WorkingSet: {0}mb", memUse);
             string rD = string.Format("RAM Sys Diag: {0}mb", memDiag);
             string c = string.Format("CPU Sys Diag: {0}%", cpuDiag);
+            string hGamePos = string.Format("Hero X,Y (Game) Pos: {0},  {1}", Math.Round(PLD.Hero.Data.xPixPos, 2), Math.Round(PLD.Hero.Data.yPixPos, 2));
+            string hPhysicsPos = string.Format("Hero X,Y (Physics) Pos: {0},  {1}", Math.Round(PLD.Hero.Data.xPhyPos, 2), Math.Round(PLD.Hero.Data.yPhyPos, 2));
             sB.Begin();
             sB.DrawString(sF, f, new Vector2(13, 3), Color.Black);
             sB.DrawString(sF, f, new Vector2(12, 2), Color.White);
@@ -111,6 +113,10 @@ namespace GameStateManagement
             sB.DrawString(sF, rD, new Vector2(12, 32), Color.White);
             sB.DrawString(sF, c, new Vector2(13, 48), Color.Black);
             sB.DrawString(sF, c, new Vector2(12, 47), Color.White);
+            sB.DrawString(sF, hGamePos, new Vector2(13, 63), Color.Black);
+            sB.DrawString(sF, hGamePos, new Vector2(12, 62), Color.White);
+            sB.DrawString(sF, hPhysicsPos, new Vector2(13, 78), Color.Black);
+            sB.DrawString(sF, hPhysicsPos, new Vector2(12, 76), Color.White);
             sB.End();
         }
         #endregion

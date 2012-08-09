@@ -38,17 +38,22 @@ namespace PLD.GameWorld
             #region staticObjects
 
             //First/Starting ground/level
-            // sprite = 505px x 58px =>   7.89m x 0.91m
+            float w = 5505f; // THIS IS PIXELS - GETS CONVERTED IN STATIC OBJECT
+            float wHalf = (5505f / gWorld.MeterInPixels) / 2;
+            float viewX = _screenCenter.X / gWorld.MeterInPixels;
+            float offset = wHalf - viewX;
+
             _startGround = new staticObject(content.Load<Texture2D>("groundSprite"),
-                (_screenCenter / gWorld.MeterInPixels) + new Vector2(0, 1.25f),
+                (_screenCenter / gWorld.MeterInPixels) + new Vector2(offset, 1.25f),
                 gWorld._world,
                 gWorld.MeterInPixels,
                 true,
                 0.3f,
                 0.5f,
-                505f,
+                w,
                 58f,
-                1f);
+                1f,
+                "ground");
 
             // MidAir Object (?)
             _midAirObject = new staticObject(content.Load<Texture2D>("stoneSprite"),
@@ -60,7 +65,8 @@ namespace PLD.GameWorld
                 0.5f,
                 10f,
                 5f,
-                1f);
+                1f,
+                "ground-wall");
 
             // Ground Object (?)
             _groundObject = new staticObject(content.Load<Texture2D>("stoneSprite"),
@@ -72,7 +78,8 @@ namespace PLD.GameWorld
                 0.5f,
                 10f,
                 5f,
-                1f);
+                1f,
+                "ground");
 
             #endregion
         }
@@ -84,11 +91,18 @@ namespace PLD.GameWorld
         public void Draw(SpriteBatch spriteBatch)
         {
             /* Ground position and origin */
-            Vector2 groundPos = _startGround._body.Position * gWorld.MeterInPixels;
-            Vector2 groundOrigin = new Vector2(_startGround._sprite.Width / 2f, _startGround._sprite.Height / 2f);
+            // THIS THE MOTHER FUCKING CENTER YALL
+            // BUT WE WANT THE TOP LEFT FOR THE DRAW YO, YO, YO (I think?)
+            Vector2 groundPos = _startGround._body.Position * (gWorld.MeterInPixels - 0.70f);
+            //Vector2 groundOrigin = new Vector2(_startGround._sprite.Width / 2f, _startGround._sprite.Height / 2f);
+            // INCLUDE THAT SHIT THAT IS WRONG .70 FLOATIES
+            Vector2 groundTopLeft = new Vector2(groundPos.X - ((_startGround._width / 2) - 0.70f), groundPos.Y - ((_startGround._height / 2) - 0.70f));
 
             //Draw Ground
-            spriteBatch.Draw(_startGround._sprite, groundPos, null, Color.White, 0f, groundOrigin, 1f, SpriteEffects.None, 0f);
+            Rectangle ground = new Rectangle(((int)(groundPos.X - _startGround._width)), ((int)(groundPos.Y - _startGround._height)),
+                (int)_startGround._width, (int)_startGround._height);
+            // spriteBatch.Draw(_startGround._sprite, groundPos, ground, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_startGround._sprite, groundTopLeft, ground, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
 
             //Draw Stone Mid Air
             // Kelner - For some reason you need to subtract from the value you are drawing

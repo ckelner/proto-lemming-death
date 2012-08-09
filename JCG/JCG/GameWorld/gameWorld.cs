@@ -16,6 +16,9 @@ namespace PLD.GameWorld
         public World _world;
         private DemoLevel _demoLevel;
         public float MeterInPixels;
+        // Chris Kelner - these are some outrageous values
+        public float width;
+        public float height;
         
         #endregion
 
@@ -26,10 +29,12 @@ namespace PLD.GameWorld
         /// </summary>
         /// <param name="gravity"></param>
         /// <param name="MIP"></param>
-        public gameWorld(Vector2 gravity, float MIP)
+        public gameWorld(Vector2 gravity, float MIP, float wWidth, float wHeight)
         {
             MeterInPixels = MIP;
             _world = new World(gravity);
+            width = wWidth;
+            height = wHeight;
         }
 
         /// <summary>

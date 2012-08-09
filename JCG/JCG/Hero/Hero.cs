@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework.Input;
+using FarseerPhysics.Dynamics.Contacts;
 
 namespace PLD.Hero
 {
@@ -14,6 +15,10 @@ namespace PLD.Hero
         // the hero objects
         private Texture2D _heroSprite;
         private Body _heroBody;
+        private bool hasJumpedTwice = false;
+
+        //static vars
+        private static string _userData = "Hero";
 
         #endregion
 
@@ -64,6 +69,15 @@ namespace PLD.Hero
             _heroBody.AngularDamping = angulardamping;
 
             _heroBody.FixedRotation = true;
+
+            _heroBody.OnCollision += handleCollision;
+
+            _heroBody.UserData = _userData;
+
+            foreach (Fixture fix in _heroBody.FixtureList)
+            {
+                fix.UserData = _userData;
+            }
         }
 
         /// <summary>
@@ -88,7 +102,15 @@ namespace PLD.Hero
             // Kelner - This allows us to double jump!
             // TODO: Limit to a single double jump
             if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
-                _heroBody.ApplyLinearImpulse(new Vector2(0, -2));
+            {
+                if (!hasJumpedTwice)
+                {
+                    _heroBody.ApplyLinearImpulse(new Vector2(0, -2));
+                    hasJumpedTwice = true;
+                }
+            }
+            Data.xPhyPos = _heroBody.Position.X;
+            Data.yPhyPos = _heroBody.Position.Y;
         }
 
         /// <summary>
@@ -102,10 +124,58 @@ namespace PLD.Hero
             Vector2 heroOrigin = new Vector2(_heroSprite.Width / 2f, _heroSprite.Height / 2f);
             // Convert physics position (meters) to screen coordinates (pixels)
             Vector2 heroPos = _heroBody.Position * MeterInPixels;
+            // Update data
+            Data.xPixPos = heroPos.X;
+            Data.yPixPos = heroPos.Y;
             // gets the hero angle (should never change)
             float heroRotation = _heroBody.Rotation;
             //Draw hero
             spriteBatch.Draw(_heroSprite, heroPos, null, Color.White, heroRotation, heroOrigin, 1f, SpriteEffects.None, 0f);
+        }
+
+        /// <summary>
+        /// gives the hero's position in the physics world
+        /// </summary>
+        /// <returns></returns>
+        public Vector2 getPos()
+        {
+            return _heroBody.Position;
+        }
+
+        /// <summary>
+        /// gives the hero's position in the view
+        /// </summary>
+        /// <returns></returns>
+        public Vector2 getPosView(float MeterInPixels)
+        {
+            return _heroBody.Position * MeterInPixels;
+        }
+
+        public bool handleCollision(Fixture b1, Fixture b2, Contact c)
+        {
+            // IT FUCKING SHOULD
+            if(b1.UserData.ToString().ToLower() == "hero")
+            {
+                //THEN WHAT THE HELL DID WE COLLIDE WITH
+                switch(b2.UserData.ToString().ToLower())
+                {
+                    case "ground":
+                        resetShitHittingGround();
+                        break;
+                    case "ground-wall": // the fuck we figure out if it hit the tops?
+                        // ? Chris Kelner no fucking clues TODO
+                        resetShitHittingGround();
+                        break;
+                }
+            }
+            // make that fucking collidisplosion happens yo
+            // Chris Kelner DRINK A FUCKING THON - GET OFF MY BALLZ
+            return true;
+        }
+
+        public void resetShitHittingGround()
+        {
+            hasJumpedTwice = false;
         }
     }
 }

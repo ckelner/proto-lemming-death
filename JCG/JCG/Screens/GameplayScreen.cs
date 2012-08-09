@@ -23,6 +23,7 @@ using FarseerPhysics.Factories;
 using FarseerPhysics.Collision.Shapes;
 using PLD.Hero;
 using PLD.GameWorld;
+using PLD.Camera;
 
 #endregion
 
@@ -40,8 +41,7 @@ namespace GameStateManagement
         // static vars
         private static float MeterInPixels = 64f;
         // Simple camera controls
-        private Matrix _view;
-        private Vector2 _cameraPosition;
+        private Camera2d _camera;
         private Vector2 _screenCenter;
         // The Hero
         Hero theHero = new Hero();
@@ -56,8 +56,7 @@ namespace GameStateManagement
             HumanReadableName = name;
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
-            _cameraPosition = Vector2.Zero;
-            gWorld = new gameWorld(new Vector2(0,20), MeterInPixels);
+            gWorld = new gameWorld(new Vector2(0,20), MeterInPixels, 10000f, 5000f);
         }
 
         public override void LoadContent()
@@ -70,11 +69,6 @@ namespace GameStateManagement
             spriteBatch = ScreenManager.SpriteBatch;
             gameFont = content.Load<SpriteFont>("gamefont");
 
-            // Initialize camera controls - Kelner - Needs improvement
-            /** TODO: Camera follow Hero? **/
-            _view = Matrix.Identity;
-            _cameraPosition = Vector2.Zero;
-
             // Convert screen center from pixels to meters
             _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
@@ -83,6 +77,9 @@ namespace GameStateManagement
 
             // init level
             gWorld.createDemoLevel(content, _screenCenter);
+
+            // this has to be here for graphics manager
+            _camera = new Camera2d(ScreenManager.GraphicsDevice.Viewport, (int)gWorld.width, (int)gWorld.height, 1f);
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
             // timing mechanism that we have just finished a very long frame, and that
@@ -108,6 +105,9 @@ namespace GameStateManagement
 
             // update the world - this is the physics engine
             gWorld._world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+
+            // update camera position
+            _camera.Pos = theHero.getPosView(MeterInPixels);
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
@@ -166,7 +166,7 @@ namespace GameStateManagement
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _camera.GetTransformation());
             
             // Draw Level
             gWorld.drawDemoLevel(spriteBatch);
