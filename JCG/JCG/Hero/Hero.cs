@@ -92,16 +92,15 @@ namespace PLD.Hero
             // This now only moves the hero left or right (A or D)
             if (keyboardState.IsKeyDown(Keys.A))
             {
-                _heroBody.ApplyForce(new Vector2(-10));
+                _heroBody.ApplyForce(new Vector2(-10, 0));
             }
-            if (keyboardState.IsKeyDown(Keys.D))
+            else if (keyboardState.IsKeyDown(Keys.D))
             {
                 _heroBody.ApplyForce(new Vector2(10, 0));
             }
-
             // Kelner - This allows us to double jump!
             // TODO: Limit to a single double jump
-            if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
+            if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyDown(Keys.Space))
             {
                 if (!hasJumpedTwice)
                 {
