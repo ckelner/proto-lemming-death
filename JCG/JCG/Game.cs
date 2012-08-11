@@ -20,6 +20,31 @@ namespace PLD
         ScreenManager screenManager;
         SpriteBatch spriteBatch;
 
+        //added by Lawrence
+        public SpriteBatch SpriteBatch
+        {
+            get { return spriteBatch; }
+        }
+
+        //added by Lawrence
+        private static Random random = new Random();
+        public static Random Random
+        {
+            get { return random; }
+        }
+        
+        #region Helper Functions
+        // added by Lawrence
+        // a handy little function that gives a random float between two
+        // values. This will be used in several places for the particle sytem, in particilar in
+        // ParticleSystem.InitializeParticle.
+        public static float RandomBetween(float min, float max)
+        {
+            return min + (float)random.NextDouble() * (max - min);
+        }
+
+        #endregion
+
         public LemmingDeath()
         {
             graphics = new GraphicsDeviceManager(this);
