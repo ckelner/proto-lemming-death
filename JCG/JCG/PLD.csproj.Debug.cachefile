@@ -2,8 +2,8 @@ Content\blank.xnb
 Content\groundSprite.xnb
 Content\rectangleSprite.xnb
 Content\stoneSprite.xnb
+Content\Particles\explosion.xnb
+Content\Particles\smoke.xnb
 Content\gamefont.xnb
 Content\menufont.xnb
 Content\debug.xnb
-Content\Particles\explosion.xnb
-Content\Particles\smoke.xnb
