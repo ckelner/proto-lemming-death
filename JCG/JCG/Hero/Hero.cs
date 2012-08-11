@@ -16,6 +16,7 @@ namespace PLD.Hero
         private Texture2D _heroSprite;
         private Body _heroBody;
         private bool hasJumpedTwice = false;
+        private bool isJumping = false;
 
         //static vars
         private static string _userData = "Hero";
@@ -92,14 +93,14 @@ namespace PLD.Hero
             // This now only moves the hero left or right (A or D)
             if (keyboardState.IsKeyDown(Keys.A))
             {
-                if (_heroBody.GetLinearVelocityFromLocalPoint(Vector2.Zero).X > -20)
+                if (_heroBody.GetLinearVelocityFromLocalPoint(Vector2.Zero).X > -15)
                 {
                     _heroBody.ApplyForce(new Vector2(-10, 0));
                 }
             }
             else if (keyboardState.IsKeyDown(Keys.D))
             {
-                if (_heroBody.GetLinearVelocityFromLocalPoint(Vector2.Zero).X < 20)
+                if (_heroBody.GetLinearVelocityFromLocalPoint(Vector2.Zero).X < 15)
                 {
                     _heroBody.ApplyForce(new Vector2(10, 0));
                 }
@@ -108,6 +109,7 @@ namespace PLD.Hero
             // TODO: Limit to a single double jump
             if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyDown(Keys.Space))
             {
+                isJumping = true;
                 if (!hasJumpedTwice)
                 {
                     _heroBody.ApplyLinearImpulse(new Vector2(0, -3));
