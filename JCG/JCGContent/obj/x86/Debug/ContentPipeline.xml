@@ -7,8 +7,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\blank.xnb</Output>
       <Time>2012-08-04T15:58:12.8147628-04:00</Time>
+=======
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\blank.xnb</Output>
+      <Time>2012-07-07T18:24:08.6004-04:00</Time>
+>>>>>>> fixed bug that allowed left jumping high
     </Item>
     <Item>
       <Source>groundSprite.png</Source>
@@ -16,8 +21,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb</Output>
       <Time>2012-08-04T15:58:12.818763-04:00</Time>
+=======
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb</Output>
+      <Time>2012-07-08T00:20:50.0368-04:00</Time>
+>>>>>>> fixed bug that allowed left jumping high
     </Item>
     <Item>
       <Source>rectangleSprite.png</Source>
@@ -25,8 +35,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb</Output>
       <Time>2012-08-04T15:58:12.8387642-04:00</Time>
+=======
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb</Output>
+      <Time>2012-07-08T00:17:33.7958-04:00</Time>
+>>>>>>> fixed bug that allowed left jumping high
     </Item>
     <Item>
       <Source>stoneSprite.png</Source>
@@ -34,8 +49,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb</Output>
+<<<<<<< HEAD
       <Time>2012-08-11T17:56:50.5627999-04:00</Time>
+=======
+      <Time>2012-08-11T14:50:01.7956951-04:00</Time>
+=======
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb</Output>
+      <Time>2012-08-04T16:45:15.3689211-04:00</Time>
+>>>>>>> fixed bug that allowed left jumping high
+>>>>>>> fixed bug that allowed left jumping high
     </Item>
     <Item>
       <Source>gamefont.spritefont</Source>
@@ -43,8 +67,13 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\gamefont.xnb</Output>
       <Time>2012-08-04T15:58:12.817763-04:00</Time>
+=======
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2012-07-07T18:24:08.6024-04:00</Time>
+>>>>>>> fixed bug that allowed left jumping high
     </Item>
     <Item>
       <Source>menufont.spritefont</Source>
@@ -52,8 +81,13 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\menufont.xnb</Output>
       <Time>2012-08-04T15:58:12.8197631-04:00</Time>
+=======
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2012-07-07T18:24:08.6034-04:00</Time>
+>>>>>>> fixed bug that allowed left jumping high
     </Item>
     <Item>
       <Source>debug.spritefont</Source>
@@ -61,8 +95,13 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
       <Time>2012-08-04T15:58:12.8167629-04:00</Time>
+=======
+      <Output>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
+      <Time>2012-07-07T18:24:08.6014-04:00</Time>
+>>>>>>> fixed bug that allowed left jumping high
     </Item>
     <Item>
       <Source>Particles\explosion.png</Source>
@@ -88,6 +127,7 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>true</CompressContent>
+<<<<<<< HEAD
       <RootDirectory>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCGContent\</RootDirectory>
       <LoggerRootDirectory>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\</LoggerRootDirectory>
       <IntermediateDirectory>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCGContent\obj\x86\Debug\</IntermediateDirectory>
@@ -116,11 +156,45 @@
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+=======
+      <RootDirectory>C:\projects\proto-lemming-death\JCG\JCGContent\</RootDirectory>
+      <LoggerRootDirectory>C:\projects\proto-lemming-death\JCG\JCG\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\projects\proto-lemming-death\JCG\JCGContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T13:41:18-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T13:41:18-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+>>>>>>> fixed bug that allowed left jumping high
         <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+<<<<<<< HEAD
         <Value>2011-01-24T21:42:51.3904053-05:00</Value>
+=======
+        <Value>2012-03-06T17:50:10.3027582-05:00</Value>
+>>>>>>> fixed bug that allowed left jumping high
       </Assembly>
     </Assemblies>
   </Asset>
