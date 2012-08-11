@@ -92,11 +92,17 @@ namespace PLD.Hero
             // This now only moves the hero left or right (A or D)
             if (keyboardState.IsKeyDown(Keys.A))
             {
-                _heroBody.ApplyForce(new Vector2(-10, 0));
+                if (_heroBody.GetLinearVelocityFromLocalPoint(Vector2.Zero).X > -20)
+                {
+                    _heroBody.ApplyForce(new Vector2(-10, 0));
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.D))
             {
-                _heroBody.ApplyForce(new Vector2(10, 0));
+                if (_heroBody.GetLinearVelocityFromLocalPoint(Vector2.Zero).X < 20)
+                {
+                    _heroBody.ApplyForce(new Vector2(10, 0));
+                }
             }
             // Kelner - This allows us to double jump!
             // TODO: Limit to a single double jump
@@ -104,7 +110,7 @@ namespace PLD.Hero
             {
                 if (!hasJumpedTwice)
                 {
-                    _heroBody.ApplyLinearImpulse(new Vector2(0, -2));
+                    _heroBody.ApplyLinearImpulse(new Vector2(0, -3));
                     hasJumpedTwice = true;
                 }
             }
