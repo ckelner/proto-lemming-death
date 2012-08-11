@@ -40,3 +40,5 @@ C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\Res
 C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.exe
 C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.pdb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\Particles\explosion.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\Particles\smoke.xnb

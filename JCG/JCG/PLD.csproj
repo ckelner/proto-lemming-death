@@ -118,6 +118,11 @@
     <Compile Include="GameWorld\staticObject.cs" />
     <Compile Include="Hero\Data.cs" />
     <Compile Include="Hero\Hero.cs" />
+    <Compile Include="Particle System\ExplosionParticleSystem.cs" />
+    <Compile Include="Particle System\ExplosionSmokeParticleSystem.cs" />
+    <Compile Include="Particle System\Particle.cs" />
+    <Compile Include="Particle System\ParticleSystem.cs" />
+    <Compile Include="Particle System\SmokePlumeParticleSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="ScreenManager\GameScreen.cs" />

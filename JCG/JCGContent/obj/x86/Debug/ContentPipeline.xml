@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb</Output>
-      <Time>2012-08-11T14:50:01.7956951-04:00</Time>
+      <Time>2012-08-11T17:56:50.5627999-04:00</Time>
     </Item>
     <Item>
       <Source>gamefont.spritefont</Source>
@@ -63,6 +63,24 @@
       <Options>None</Options>
       <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb</Output>
       <Time>2012-08-04T15:58:12.8167629-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Particles\explosion.png</Source>
+      <Name>Particles\explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\Particles\explosion.xnb</Output>
+      <Time>2012-08-11T18:05:11.415447-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Particles\smoke.bmp</Source>
+      <Name>Particles\smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\Particles\smoke.xnb</Output>
+      <Time>2012-08-11T18:05:11.4184472-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
