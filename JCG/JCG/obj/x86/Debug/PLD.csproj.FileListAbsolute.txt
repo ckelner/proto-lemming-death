@@ -26,3 +26,17 @@ R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xn
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\FarseerPhysicsXNA.dll
 C:\projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb
 R:\Projects\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\blank.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\groundSprite.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\rectangleSprite.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\stoneSprite.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\gamefont.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\menufont.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\Content\debug.xnb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\PLD.exe
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\PLD.pdb
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\bin\x86\Debug\FarseerPhysicsXNA.dll
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.exe
+C:\Users\Lawrence\Documents\GitHub\proto-lemming-death\JCG\JCG\obj\x86\Debug\PLD.pdb
