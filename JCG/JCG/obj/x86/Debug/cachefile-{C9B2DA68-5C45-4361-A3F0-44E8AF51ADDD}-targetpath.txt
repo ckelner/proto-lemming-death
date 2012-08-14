@@ -1,6 +1,0 @@
-Content\blank.xnb
-Content\groundSprite.xnb
-Content\rectangleSprite.xnb
-Content\gamefont.xnb
-Content\menufont.xnb
-Content\debug.xnb
