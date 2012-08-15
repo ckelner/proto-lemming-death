@@ -16,7 +16,7 @@ namespace PLD.Hero
         private Texture2D _heroSprite;
         private Body _heroBody;
         private bool hasJumpedTwice = false;
-        private bool isJumping = false;
+        private bool isJumping = true;
 
         //static vars
         private static string _userData = "Hero";
@@ -106,14 +106,20 @@ namespace PLD.Hero
                 }
             }
             // Kelner - This allows us to double jump!
-            // TODO: Limit to a single double jump
-            if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyDown(Keys.Space))
+            if (keyboardState.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
             {
-                isJumping = true;
-                if (!hasJumpedTwice)
+                if (isJumping == true)
                 {
+                    if (!hasJumpedTwice)
+                    {
+                        _heroBody.ApplyLinearImpulse(new Vector2(0, -3));
+                        hasJumpedTwice = true;
+                    }
+                }
+                else
+                {
+                    isJumping = true;
                     _heroBody.ApplyLinearImpulse(new Vector2(0, -3));
-                    hasJumpedTwice = true;
                 }
             }
             Data.xPhyPos = _heroBody.Position.X;
@@ -182,6 +188,7 @@ namespace PLD.Hero
 
         public void resetShitHittingGround()
         {
+            isJumping = false;
             hasJumpedTwice = false;
         }
     }

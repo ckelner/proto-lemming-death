@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PLD.Hero
 {
-    public static class Data
+    public struct Data
     {
         public static float xPhyPos;
         public static float yPhyPos;
