@@ -48,7 +48,7 @@ namespace PLD.Hero
         {
             // Load Sprite
             // TODO: Expand...
-            _heroSprite = content.Load<Texture2D>("rectangleSprite"); //  33px x 63px => 0.52m x 1m
+            _heroSprite = content.Load<Texture2D>("World/rectangleSprite"); //  33px x 63px => 0.52m x 1m
 
             // Vector2 heroPosition = (_screenCenter / MeterInPixels) + new Vector2(0, -1.5f);
             Vector2 heroPosition = (_screenCenter / MeterInPixels);

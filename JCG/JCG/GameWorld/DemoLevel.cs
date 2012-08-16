@@ -43,7 +43,11 @@ namespace PLD.GameWorld
             float viewX = _screenCenter.X / gWorld.MeterInPixels;
             float offset = wHalf - viewX;
 
-            _startGround = new staticObject(content.Load<Texture2D>("groundSprite"),
+            // gfx 512 x 360 - What we gotta do?
+            // 360 / 64 ? = 317??? how's that work... ?
+            // TODO: FIGURE IT THE FUCK OUT
+            // KELNER - It also ain't getting drawn right... too far left... (starting position)
+            _startGround = new staticObject(content.Load<Texture2D>("World/ground2"),
                 (_screenCenter / gWorld.MeterInPixels) + new Vector2(offset, 1.25f),
                 gWorld._world,
                 gWorld.MeterInPixels,
@@ -51,12 +55,12 @@ namespace PLD.GameWorld
                 0.3f,
                 0.5f,
                 w,
-                58f,
+                318f,
                 1f,
                 "ground");
 
             // MidAir Object (?)
-            _midAirObject = new staticObject(content.Load<Texture2D>("stoneSprite"),
+            _midAirObject = new staticObject(content.Load<Texture2D>("World/stoneSprite"),
                 (_screenCenter / gWorld.MeterInPixels) + new Vector2(.89f, 0),
                 gWorld._world,
                 gWorld.MeterInPixels,
@@ -69,7 +73,7 @@ namespace PLD.GameWorld
                 "ground-wall");
 
             // Ground Object (?)
-            _groundObject = new staticObject(content.Load<Texture2D>("stoneSprite"),
+            _groundObject = new staticObject(content.Load<Texture2D>("World/stoneSprite"),
                 (_screenCenter / gWorld.MeterInPixels) + new Vector2(-2.5f, 0.75f),
                 gWorld._world,
                 gWorld.MeterInPixels,
@@ -91,18 +95,18 @@ namespace PLD.GameWorld
         public void Draw(SpriteBatch spriteBatch)
         {
             /* Ground position and origin */
+            // OK - Kelner - Aug 15 2012 - Something about this doesn't require the -.70f... whatever
             // THIS THE MOTHER FUCKING CENTER YALL
             // BUT WE WANT THE TOP LEFT FOR THE DRAW YO, YO, YO (I think?)
-            Vector2 groundPos = _startGround._body.Position * (gWorld.MeterInPixels - 0.70f);
+            Vector2 groundPos = _startGround._body.Position * (gWorld.MeterInPixels);
             //Vector2 groundOrigin = new Vector2(_startGround._sprite.Width / 2f, _startGround._sprite.Height / 2f);
-            // INCLUDE THAT SHIT THAT IS WRONG .70 FLOATIES
-            Vector2 groundTopLeft = new Vector2(groundPos.X - ((_startGround._width / 2) - 0.70f), groundPos.Y - ((_startGround._height / 2) - 0.70f));
+            // INCLUDE THAT SHIT THAT IS WRONG .70 FLOATIES - NOPE - NOPE - NOPE - DON'T NEED IT
+            Vector2 groundTopLeft = new Vector2(groundPos.X - ((_startGround._width / 2)), groundPos.Y - ((_startGround._height / 2) + 1f));
 
             //Draw Ground
             Rectangle ground = new Rectangle(((int)(groundPos.X - _startGround._width)), ((int)(groundPos.Y - _startGround._height)),
                 (int)_startGround._width, (int)_startGround._height);
-            // spriteBatch.Draw(_startGround._sprite, groundPos, ground, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
-            spriteBatch.Draw(_startGround._sprite, groundTopLeft, ground, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_startGround._sprite, groundTopLeft, ground, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             //Draw Stone Mid Air
             // Kelner - For some reason you need to subtract from the value you are drawing
@@ -111,7 +115,7 @@ namespace PLD.GameWorld
             // refining the 'MeterInPixels' value or changing the physics object instead of the 
             // object that gets drawn.  Further investigation should be done...
             Vector2 smallStonePos = _midAirObject._body.Position * (gWorld.MeterInPixels - 0.70f);
-            spriteBatch.Draw(_midAirObject._sprite, smallStonePos, null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_midAirObject._sprite, smallStonePos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             //Draw Stone Ground
             // Kelner - For some reason you need to subtract from the value you are drawing
@@ -120,7 +124,7 @@ namespace PLD.GameWorld
             // refining the 'MeterInPixels' value or changing the physics object instead of the 
             // object that gets drawn.  Further investigation should be done...
             Vector2 smallStoneGroundPos = _groundObject._body.Position * (gWorld.MeterInPixels - 0.70f);
-            spriteBatch.Draw(_groundObject._sprite, smallStoneGroundPos, null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_groundObject._sprite, smallStoneGroundPos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
     }
 }

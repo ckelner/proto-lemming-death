@@ -67,7 +67,7 @@ namespace GameStateManagement
             }
             
             spriteBatch = ScreenManager.SpriteBatch;
-            gameFont = content.Load<SpriteFont>("gamefont");
+            gameFont = content.Load<SpriteFont>("fonts/gamefont");
 
             // Convert screen center from pixels to meters
             _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
@@ -166,7 +166,9 @@ namespace GameStateManagement
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _camera.GetTransformation());
+            // Keldog - Let's tile this shizzle my nizzle
+            // spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _camera.GetTransformation());
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.Opaque, SamplerState.LinearWrap, DepthStencilState.Default, RasterizerState.CullNone, null, _camera.GetTransformation());
             
             // Draw Level
             gWorld.drawDemoLevel(spriteBatch);
