@@ -1,4 +1,5 @@
-proto-lemming-death
+Proto-Lemming-Death
 ===================
 
-Prototype of a lemming death game
+An incomplete video game prototype for a mechanic/game play style; written in XNA (C#).  
+Scrapped in favor of Unity.  May reture to add some complete-ness to it at some point.
